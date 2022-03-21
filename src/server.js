@@ -3,7 +3,7 @@ import { Readable } from "stream";
 import { randomUUID } from "crypto";
 
 function* run() {
-  for (let index = 0; index <= 99; index++) {
+  for (let index = 0; index <= 9999; index++) {
     const data = {
       id: randomUUID(),
       name: `Diego-${index}`,
@@ -16,7 +16,7 @@ function handler(request, response) {
   const readable = new Readable({
     read() {
       for (const data of run()) {
-        console.log(`sending`, data);
+        // console.log(`sending`, data);
         this.push(JSON.stringify(data) + "\n");
       }
       // para informar que os dados acabaram
